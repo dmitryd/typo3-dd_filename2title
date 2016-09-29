@@ -95,10 +95,8 @@ class PrimitiveTitleExtractor implements ExtractorInterface   {
 	 * @return array
 	 */
 	public function extractMetaData(File $file, array $previousExtractedData = []) {
-		$metaData = array();
-		$fileName = $file->getForLocalProcessing(false);
-		$metaData['title'] = preg_replace('/[\-_]/', ' ', pathinfo($fileName, PATHINFO_FILENAME));
-
-		return $metaData;
+		return [
+			'title' => preg_replace('/[\-_]/', ' ', pathinfo($file->getForLocalProcessing(false), PATHINFO_FILENAME))
+		];
 	}
 }
